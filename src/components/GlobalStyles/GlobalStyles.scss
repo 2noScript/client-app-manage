@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap");
+// custom for 2noscript
+:root {
+  --font-Roboto: "Roboto", sans-serif;
+  //z-index
+  --z-default: 0;
+  --z-low: 10;
+  --z-medium: 100;
+  --z-hight: 1000;
+  --z-very-hight: 10000;
+  //color base
+  --white: #ffffff;
+  --black: #000000;
+  --red: #ff0000;
+  --lime: #00ff00;
+  --blue: #0000ff;
+  --yellow: #ffff00;
+  --cyan: #00ffff;
+  --magenta: #ff00ff;
+  --silver: #c0c0c0;
+  --gray: #808080;
+  --maroon: #800000;
+  --olive: #808000;
+  --green: #008000;
+  --purple: #800080;
+  --teal: #008080;
+  --navy: #000080;
+
+  --primary-light: #f4f4f8;
+  --primary-dark: #292929;
+
+  --primary-white: #fcfcfc;
+  //layout
+
+  //components
+}
+.app {
+  // filter: blur(4px);
+  // background-color: var(--primary-light);
+  background-color: black;
+}
+title {
+  text-transform: uppercase !important;
+}
+* {
+  box-sizing: border-box;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: var(--font-Roboto);
+}
+body {
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  overflow: hidden overlay;
+  // scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+div {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+img {
+  vertical-align: middle;
+  border: none;
+}
+input[type="text"] {
+  outline: none;
+  border: none;
+}
+button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+ul {
+  list-style-type: none;
+}
+//scroll
+::-webkit-scrollbar {
+  width: 4px;
+  direction: rtl;
+  &-track {
+    background: transparent;
+  }
+
+  &-thumb {
+    background: #888;
+    border-radius: 10px;
+    z-index: 100;
+    &:hover {
+      background: #555;
+    }
+  }
+}
