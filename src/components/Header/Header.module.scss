@@ -1,0 +1,20 @@
+.wrapper {
+	.menu {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.line {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		height: 1.2px;
+		transition: width 0.4s ease-in-out 0s;
+		bottom: -2px;
+	}
+	.line.line-active {
+		// background-color: black;
+		width: 60px;
+	}
+}
