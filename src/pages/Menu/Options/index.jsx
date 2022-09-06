@@ -24,7 +24,7 @@ function Otions() {
 	}, [value]);
 
 	return (
-		<div className={cx('h-20 flex items-center ')}>
+		<div className={cx('h-14 flex items-center bg-red-400 ')}>
 			<div className={cx('w-20')}></div>
 			<div
 				className={cx(

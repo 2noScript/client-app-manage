@@ -1,42 +1,41 @@
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 // import api from '../../api';
-import {useEffect, useState, memo, useCallback, useLayoutEffect} from 'react';
-import Banner from './Banner';
+import {memo} from 'react';
 import Order from './Order';
 import Products from './Products';
 import Otions from './Options';
-import {useSelector, useDispatch} from 'react-redux';
-import {fetchProductsList} from '../../store/productsReducer';
 const cx = classNames.bind(styles);
 function Menu() {
-	const [menuData, setMenuData] = useState(null);
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(
-			fetchProductsList({
-				page: 1,
-				itemPerPage: 20,
-			})
-		);
-	}, []);
+	// const [menuData, setMenuData] = useState(null);
+	// const dispatch = useDispatch();
+	// useEffect(() => {
+	// 	dispatch(
+	// 		fetchProductsList({
+	// 			page: 1,
+	// 			itemPerPage: 20,
+	// 		})
+	// 	);
+	// }, []);
 	return (
-		<div className={cx('bg-stone-100')}>
-			<div className={cx('pr-72', 'container')}>
-				<div className={cx('header h-20')}>MENU</div>
-				<div className={cx('px-2')}>
-					<Banner data={null} />
-				</div>
-				<div className={cx('sticky top-0 z-50 bg-white')}>
+		<div className={cx(' grid grid-cols-12')}>
+			<div className={cx(' col-span-9', 'container scroll-y h-screen')}>
+				<div className={cx('sticky top-0 z-50  px-8 py-4 bg-white', '')}>
 					<Otions />
 				</div>
-				<div className={cx('px-8 ')}>
+				{/* <div className={cx('h-20')}></div> */}
+				<div
+					className={cx('px-8 pt-8', '')}
+					onScroll={e => {
+						e.stopPropagation();
+					}}>
 					<Products />
 				</div>
+				<div className={cx('h-80')}></div>
 			</div>
 
-			<div className={cx('fixed top-0 right-0 z-50 w-72 h-screen bg-green-400')}>
-				{/* <Order /> */}
+			<div className={cx('col-span-3 h-screen bg-green-400', '')}>
+				<Order />
 			</div>
 		</div>
 	);

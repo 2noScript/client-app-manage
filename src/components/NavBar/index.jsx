@@ -7,7 +7,7 @@ import {Link, useLocation} from 'react-router-dom';
 const cx = classNames.bind(styles);
 function NavBar() {
 	// const [active, setActive] = useState('home');
-	// let {pathname} = useLocation();
+	let {pathname} = useLocation();
 	// console.log(pathname);
 	const TABS = useMemo(() => {
 		const _TABS = [
@@ -49,7 +49,7 @@ function NavBar() {
 							<div
 								className={cx(
 									'text-3xl cursor-pointer',
-									// `${pathname === '/' + name && 'active'}`
+									`${pathname === '/' + name && 'active'}`
 								)}>
 								{ico}
 							</div>
