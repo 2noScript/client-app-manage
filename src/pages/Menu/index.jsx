@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 // import api from '../../api';
-import {useEffect, useState, memo, useCallback} from 'react';
+import {useEffect, useState, memo, useCallback, useLayoutEffect} from 'react';
 import Banner from './Banner';
 import Order from './Order';
 import Products from './Products';
@@ -11,10 +11,7 @@ import {fetchProductsList} from '../../store/productsReducer';
 const cx = classNames.bind(styles);
 function Menu() {
 	const [menuData, setMenuData] = useState(null);
-	const {data, loading, err} = useSelector(state => state.productsReducer);
 	const dispatch = useDispatch();
-	// console.log(data);
-
 	useEffect(() => {
 		dispatch(
 			fetchProductsList({
@@ -23,9 +20,6 @@ function Menu() {
 			})
 		);
 	}, []);
-	useEffect(() => {
-		data && setMenuData(data);
-	}, [data]);
 	return (
 		<div className={cx('bg-stone-100')}>
 			<div className={cx('pr-72', 'container')}>
@@ -36,11 +30,13 @@ function Menu() {
 				<div className={cx('sticky top-0 z-50 bg-white')}>
 					<Otions />
 				</div>
-				<div className={cx('px-8 ')}>{!loading && <Products menuData={menuData} />}</div>
+				<div className={cx('px-8 ')}>
+					<Products />
+				</div>
 			</div>
 
 			<div className={cx('fixed top-0 right-0 z-50 w-72 h-screen bg-green-400')}>
-				<Order />
+				{/* <Order /> */}
 			</div>
 		</div>
 	);

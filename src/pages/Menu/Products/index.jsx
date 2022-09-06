@@ -1,8 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './Products.module.scss';
-import {useCallback} from 'react';
+import {useCallback, memo} from 'react';
+import {useSelector} from 'react-redux';
 const cx = classNames.bind(styles);
 function Products({menuData}) {
+	const {data, loading, err} = useSelector(state => state.productsReducer);
+
 	const fomatMoney = useCallback((money, unit) => {
 		let _money = money.toString();
 
@@ -10,10 +13,11 @@ function Products({menuData}) {
 		if (_money.length > 3) _money = _money.slice(0, 2) + '.' + _money.slice(2);
 		return _money + ' ' + unit;
 	}, []);
+	console.log(loading);
 	return (
-		<div className={cx('grid grid-cols-5 gap-4', '')}>
-			{menuData &&
-				menuData.productList.map(item => {
+		<div className={cx('grid grid-cols-5 gap-4 h-screen', 'scroll-y')}>
+			{!loading ? (
+				data.productList.map(item => {
 					const {productid, productname, productprice, description, imagelink, discount} =
 						item;
 					return (
@@ -36,9 +40,12 @@ function Products({menuData}) {
 							</div>
 						</div>
 					);
-				})}
+				})
+			) : (
+				<div>loading ..................</div>
+			)}
 		</div>
 	);
 }
 
-export default Products;
+export default memo(Products);

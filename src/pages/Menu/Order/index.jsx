@@ -1,5 +1,6 @@
+import {memo} from 'react';
 function Order() {
 	return <div>my Order</div>;
 }
 
-export default Order;
+export default memo(Order);

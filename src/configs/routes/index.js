@@ -7,7 +7,7 @@ import Home from '../../pages/Home';
 import Menu from '../../pages/Menu';
 const publicRoutes = [
 	{
-		path: '/',
+		path: '/home',
 		component: Home,
 		layout: DefaultLayout,
 	},

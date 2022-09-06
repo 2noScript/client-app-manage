@@ -5,7 +5,7 @@ export const fetchProductsList = createAsyncThunk(
 	'fetchProductsList',
 	async (params, thunkAPI) => {
 		try {
-			const {data} = await api.get(`products`, {
+			const {data} = await api.get(`products/search`, {
 				params: {
 					...params,
 					token: 'abcd',

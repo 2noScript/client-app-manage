@@ -3,17 +3,18 @@ import styles from './NavBar.module.scss';
 import {AiOutlineHome, AiOutlineHeart} from 'react-icons/ai';
 import {GiStabbedNote} from 'react-icons/gi';
 import {useMemo, memo, useState, useCallback} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 const cx = classNames.bind(styles);
 function NavBar() {
-	const [active, setActive] = useState('home');
-
+	// const [active, setActive] = useState('home');
+	// let {pathname} = useLocation();
+	// console.log(pathname);
 	const TABS = useMemo(() => {
 		const _TABS = [
 			{
 				name: 'home',
 				ico: <AiOutlineHome />,
-				link: '/',
+				link: '/home',
 			},
 			{
 				name: 'heart',
@@ -29,9 +30,9 @@ function NavBar() {
 		return _TABS;
 	}, []);
 
-	const handleActive = useCallback(name => {
-		setActive(name);
-	}, []);
+	// const handleActive = useCallback(name => {
+	// 	setActive(name);
+	// }, []);
 	return (
 		<div className={cx('pt-40 fixed top-0 left-0 z-50 bg-slate-200 w-20 h-screen')}>
 			<nav>
@@ -42,13 +43,13 @@ function NavBar() {
 							to={link}
 							key={name}
 							onClick={() => {
-								handleActive(name);
+								// handleActive(name);
 							}}
 							className={cx('flex items-center justify-center h-14 hover:text-red-400')}>
 							<div
 								className={cx(
 									'text-3xl cursor-pointer',
-									`${active === name && 'active'}`
+									// `${pathname === '/' + name && 'active'}`
 								)}>
 								{ico}
 							</div>
