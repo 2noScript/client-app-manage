@@ -44,9 +44,7 @@ function NavBar() {
 							onClick={() => {
 								handleActive(name);
 							}}
-							className={cx(
-								'flex items-center justify-center h-14 hover:text-red-400'
-							)}>
+							className={cx('flex items-center justify-center h-14 hover:text-red-400')}>
 							<div
 								className={cx(
 									'text-3xl cursor-pointer',
