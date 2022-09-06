@@ -17,6 +17,7 @@ function Products({menuData}) {
 	return (
 		<div className={cx('grid grid-cols-5 gap-4 h-screen', 'scroll-y')}>
 			{!loading ? (
+				data &&
 				data.productList.map(item => {
 					const {productid, productname, productprice, description, imagelink, discount} =
 						item;
