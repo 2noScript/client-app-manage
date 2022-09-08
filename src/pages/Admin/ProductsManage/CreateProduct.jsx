@@ -22,13 +22,13 @@ function CreateProduct() {
 		};
 		const post = async () => {
 			try {
-				// const res = await api.post('products?token=abcd', data);
 				await api.post('products?token=abcd', data, {
 					headers: {
 						'Content-Type': 'multipart/form-data',
 					},
 				});
-				console.log('create product successfully');
+				alert('create product successfully');
+				window.location.reload();
 			} catch {
 				console.log('err post');
 			}

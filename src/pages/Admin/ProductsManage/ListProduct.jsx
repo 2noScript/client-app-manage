@@ -6,7 +6,8 @@ function ListProduct({data}) {
 			{data &&
 				data.map(item => {
 					//hide fix
-					if (!item.productid) return <div key={item.productid}></div>;
+					if (!item.productid | item.productid.startsWith('?'))
+						return <div key={item.productid}></div>;
 					return <Product key={item.productid} data={item} />;
 				})}
 		</>

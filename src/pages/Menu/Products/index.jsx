@@ -1,15 +1,14 @@
 import classNames from 'classnames/bind';
 import styles from './Products.module.scss';
-import {useCallback, memo} from 'react';
+import {useCallback, memo, Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {BsCartPlus} from 'react-icons/bs';
 const cx = classNames.bind(styles);
 function Products() {
 	const {data, loading} = useSelector(state => state.productsReducer);
 	const fomatMoney = useCallback((money, unit) => {
-		if (money == null) return 'ukm';
+		if (!money) return '';
 		let _money = money.toString();
-
 		// quán phèo ko có caffe giá 6 số ko --> ko cần xử lý
 		if (_money.length > 3) _money = _money.slice(0, 2) + '.' + _money.slice(2);
 		return _money + ' ' + unit;
@@ -21,7 +20,8 @@ function Products() {
 				data.productList.map(item => {
 					const {productid, productname, productprice, description, imagelink, discount} =
 						item;
-
+					if (!productid | productid.startsWith('?'))
+						return <Fragment key={productid}></Fragment>;
 					return (
 						<div key={productid} className={cx('h-72  drop-shadow-lg shadow-slate-100')}>
 							<img

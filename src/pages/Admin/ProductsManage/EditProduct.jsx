@@ -29,34 +29,65 @@ function EditProduct({data}) {
 					},
 				});
 				alert('xóa thành công');
+				window.location.reload();
 			} catch {
 				alert('err');
 			}
 		};
 		deleteProduct();
 	}, [id]);
-	const handleUpdate = useCallback(() => {}, [
-		id,
-		name,
-		price,
-		description,
-		discount,
-		status,
-		imageLink,
-	]);
+
+	const handleUpdate = useCallback(() => {
+		const data = {
+			productname: name,
+			productid: id,
+			productidold: id,
+			productprice: price,
+			description: description,
+			discount: discount,
+			imagelink: imageLink,
+			itemstatus: status,
+		};
+		const updateProduct = async () => {
+			try {
+				await api.put(
+					'products',
+					{
+						token: 'abcd',
+						...data,
+					},
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data',
+						},
+					}
+				);
+				alert('chỉnh sửa thành công');
+				window.location.reload();
+			} catch {
+				alert('chỉnh sửa ko thành công');
+			}
+		};
+		if (name && id && price && description && discount && status && imageLink)
+			updateProduct();
+		else {
+			alert('thông tin không được bỏ trống');
+		}
+	}, [id, name, price, description, discount, status, imageLink]);
 	return (
 		<div className={cx('flex flex-col')}>
 			<div>
 				<div className={cx('')}>
 					<div className={cx('w-80')}>id</div>
-					<input
+					{/* <input
 						type="text"
 						value={id}
 						className={cx('w-96')}
 						onChange={e => {
 							setId(e.target.value);
 						}}
-					/>
+					/> */}
+					<div>{id}</div>
 				</div>
 				<div>
 					<div>status</div>
@@ -126,7 +157,9 @@ function EditProduct({data}) {
 				</div>
 			</div>
 			<div>
-				<button className={cx('px-2')}>update</button>
+				<button className={cx('px-2')} onClick={handleUpdate}>
+					update
+				</button>
 				<button className={cx('px-2')} onClick={handleDelete}>
 					delete
 				</button>
