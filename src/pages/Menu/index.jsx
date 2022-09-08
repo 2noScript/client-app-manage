@@ -7,20 +7,11 @@ import Products from './Products';
 import Otions from './Options';
 const cx = classNames.bind(styles);
 function Menu() {
-	// const [menuData, setMenuData] = useState(null);
-	// const dispatch = useDispatch();
-	// useEffect(() => {
-	// 	dispatch(
-	// 		fetchProductsList({
-	// 			page: 1,
-	// 			itemPerPage: 20,
-	// 		})
-	// 	);
-	// }, []);
+	console.log('x');
 	return (
-		<div className={cx(' grid grid-cols-12')}>
-			<div className={cx(' col-span-9', 'container scroll-y h-screen')}>
-				<div className={cx('sticky top-0 z-50  px-8 py-4 bg-white', '')}>
+		<div className={cx(' grid grid-cols-12 h-screen')}>
+			<div className={cx(' col-span-9', ' scroll-y  scroll-smooth', 'container')}>
+				<div className={cx('sticky top-0 z-50 px-8 py-4 bg-white', '')}>
 					<Otions />
 				</div>
 				{/* <div className={cx('h-20')}></div> */}
@@ -31,7 +22,7 @@ function Menu() {
 					}}>
 					<Products />
 				</div>
-				<div className={cx('h-80')}></div>
+				{/* <div className={cx('h-80')}></div> */}
 			</div>
 
 			<div className={cx('col-span-3 h-screen bg-green-400', '')}>

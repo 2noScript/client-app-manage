@@ -3,12 +3,16 @@ import styles from './NavBar.module.scss';
 import {AiOutlineHome, AiOutlineHeart} from 'react-icons/ai';
 import {GiStabbedNote} from 'react-icons/gi';
 import {useMemo, memo, useState, useCallback} from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {resetUser} from '../../store/userReducer';
 const cx = classNames.bind(styles);
 function NavBar() {
 	// const [active, setActive] = useState('home');
 	let {pathname} = useLocation();
 	// console.log(pathname);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const TABS = useMemo(() => {
 		const _TABS = [
 			{
@@ -56,6 +60,16 @@ function NavBar() {
 						</Link>
 					);
 				})}
+				<div
+					className={cx('cursor-pointer px-4 py-4')}
+					onClick={() => {
+						dispatch(resetUser());
+						localStorage.removeItem('accessToken');
+						localStorage.removeItem('user');
+						navigate('/', {});
+					}}>
+					thoát
+				</div>
 			</nav>
 		</div>
 	);

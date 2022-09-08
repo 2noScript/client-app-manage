@@ -5,23 +5,38 @@ import DefaultLayout from '../../layouts/DefaultLayout';
 // pages
 import Home from '../../pages/Home';
 import Menu from '../../pages/Menu';
+import Login from '../../pages/Login';
+import Admin from '../../pages/Admin';
 const publicRoutes = [
 	{
+		path: '/',
+		page: Login,
+		layout: Fragment,
+	},
+];
+const clientRoutes = [
+	{
 		path: '/home',
-		component: Home,
+		page: Home,
 		layout: DefaultLayout,
 	},
 	{
 		path: '/menu',
-		component: Menu,
+		page: Menu,
 		layout: DefaultLayout,
 	},
 	{
 		path: '/heart',
-		component: Fragment,
+		page: Fragment,
 		layout: DefaultLayout,
 	},
 ];
-const privateRoutes = [];
+const adminRoutes = [
+	{
+		path: '/admin',
+		page: Admin,
+		layout: Fragment,
+	},
+];
 
-export {publicRoutes, privateRoutes};
+export {clientRoutes, adminRoutes, publicRoutes};

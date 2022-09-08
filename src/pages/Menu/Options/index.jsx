@@ -7,12 +7,11 @@ import {fetchProductsList} from '../../../store/productsReducer';
 const cx = classNames.bind(styles);
 function Otions() {
 	const [keyword, setKeyword] = useState('');
-	const [value, setValue] = useDebounce('', 1000);
+	const [value, setValue] = useDebounce('', 400);
 	const dispatch = useDispatch();
 	useEffect(() => {
 		setValue(keyword);
 	}, [keyword]);
-	// console.log(value);
 	useEffect(() => {
 		dispatch(
 			fetchProductsList({
