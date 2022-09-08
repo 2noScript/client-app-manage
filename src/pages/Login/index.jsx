@@ -31,31 +31,24 @@ function Login() {
 	const handleSubmit = useCallback(() => {
 		const submit = async () => {
 			try {
-				const {data} = await api.get('users', {
-					params: {
-						token: 'abcd',
+				const {data} = await api.post(
+					'login',
+					{
+						username: userName,
+						password: password,
 					},
-				});
-				const {userList} = data;
-				userList.forEach(item => {
-					// const {username, role, password, initializationtokentime} = item;
-					if (userName === item.username && password === item.password) {
-						if (item.role === 'admin') {
-							localStorage.setItem('accessToken', true);
-							localStorage.setItem('user', 'admin');
-							navigate('/admin');
-							dispatch(isAdmin());
-						} else if (item.role === 'user') {
-							dispatch(isClient());
-							localStorage.setItem('accessToken', true);
-							localStorage.setItem('user', 'client');
-							navigate('/menu');
-						}
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data',
+						},
 					}
-				});
-				console.log(userList);
+				);
+				localStorage.setItem('accessToken', data.token);
+				localStorage.setItem('user', 'admin');
+				navigate('/admin');
+				dispatch(isAdmin());
 			} catch {
-				console.log('await data');
+				alert('xin lỗi chú ko pass qua');
 			}
 		};
 		submit();

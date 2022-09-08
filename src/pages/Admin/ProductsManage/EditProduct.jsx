@@ -25,7 +25,7 @@ function EditProduct({data}) {
 			try {
 				await api.delete(`products/${id}/`, {
 					params: {
-						token: 'abcd',
+						token: localStorage.getItem('accessToken'),
 					},
 				});
 				alert('xóa thành công');
@@ -53,7 +53,7 @@ function EditProduct({data}) {
 				await api.put(
 					'products',
 					{
-						token: 'abcd',
+						token: localStorage.getItem('accessToken'),
 						...data,
 					},
 					{

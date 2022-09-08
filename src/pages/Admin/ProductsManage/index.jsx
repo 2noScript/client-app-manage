@@ -17,7 +17,7 @@ function ProductsManage() {
 			try {
 				const {data} = await api.get('products/search', {
 					params: {
-						token: 'abcd',
+						token: localStorage.getItem('accessToken'),
 						keyword: searchDebounce,
 						itemPerPage: 100,
 						page: 1,

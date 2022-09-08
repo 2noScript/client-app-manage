@@ -22,11 +22,18 @@ function CreateProduct() {
 		};
 		const post = async () => {
 			try {
-				await api.post('products?token=abcd', data, {
-					headers: {
-						'Content-Type': 'multipart/form-data',
+				await api.post(
+					'products',
+					{
+						...data,
+						token: localStorage.getItem('accessToken'),
 					},
-				});
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data',
+						},
+					}
+				);
 				alert('create product successfully');
 				window.location.reload();
 			} catch {
