@@ -9,8 +9,8 @@ import {useNavigate} from 'react-router-dom';
 import api from '../../api';
 import {GiWoodenClogs} from 'react-icons/gi';
 const cx = classNames.bind(styles);
-const u =
-	'https://toigingiuvedep.vn/wp-content/uploads/2021/07/mau-menu-quan-cafe-cuc-dep.jpg';
+const u = null;
+// 'https://toigingiuvedep.vn/wp-content/uploads/2021/07/mau-menu-quan-cafe-cuc-dep.jpg';
 
 function Login() {
 	const [userName, setUserName] = useState('');
@@ -43,10 +43,17 @@ function Login() {
 						},
 					}
 				);
-				localStorage.setItem('accessToken', data.token);
-				localStorage.setItem('user', 'admin');
-				navigate('/admin');
-				dispatch(isAdmin());
+				if (data.role === 'admin') {
+					localStorage.setItem('accessToken', data.token);
+					localStorage.setItem('user', 'admin');
+					navigate('/admin');
+					dispatch(isAdmin());
+				} else if (data.role === 'user') {
+					localStorage.setItem('accessToken', data.token);
+					localStorage.setItem('user', 'client');
+					navigate('/menu');
+					dispatch(isClient());
+				}
 			} catch {
 				alert('xin lỗi chú ko pass qua');
 			}
@@ -60,7 +67,8 @@ function Login() {
 			<div
 				className={cx(
 					'abs-center  backdrop-brightness-50 bg-white/30 flex items-center justify-center',
-					'login'
+					'login',
+					'rounded-3xl'
 				)}>
 				<div className={cx('bg-white h-40 w-72')}>
 					<div className={cx('flex items-center')}>

@@ -8,7 +8,7 @@ export const fetchProductsList = createAsyncThunk(
 			const {data} = await api.get(`products/search`, {
 				params: {
 					...params,
-					token: 'abcd',
+					token: localStorage.getItem('accessToken'),
 				},
 			});
 			return data;
