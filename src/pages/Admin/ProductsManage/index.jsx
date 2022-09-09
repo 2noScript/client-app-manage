@@ -9,7 +9,7 @@ const cx = classNames.bind();
 
 function ProductsManage() {
 	const [data, setData] = useState([]);
-	const [hideCreateProduct, setHideCreateProduct] = useState(true);
+	const [hideCreateProduct, setHideCreateProduct] = useState(false);
 	const [searchValue, setSearchValue] = useState('');
 	const [searchDebounce, setSearchDebounce] = useDebounce(searchValue, 500);
 	useEffect(() => {
@@ -36,16 +36,27 @@ function ProductsManage() {
 	}, [searchValue]);
 	return (
 		<div className={cx('relative')}>
-			<div className={cx('text-red-500')}>product</div>
-			<div>
-				<input
-					type="text"
-					placeholder="tìm kiếm tên sản phẩm"
-					value={searchValue}
-					onChange={e => {
-						setSearchValue(e.target.value);
-					}}
-				/>
+			<div
+				className={cx(
+					'text-red-500 flex items-center justify-center text-3xl',
+					'capitalize font-medium'
+				)}>
+				product
+			</div>
+			<div className={cx('flex items-center justify-center h-20')}>
+				<div className={cx('w-1/4 bg-red-100 rounded-md px-3 py-1')}>
+					<input
+						className={cx(
+							'w-full bg-transparent placeholder:text-center placeholder:capitalize'
+						)}
+						type="text"
+						placeholder="tìm kiếm tên sản phẩm"
+						value={searchValue}
+						onChange={e => {
+							setSearchValue(e.target.value);
+						}}
+					/>
+				</div>
 			</div>
 			<div
 				onClick={e => {
@@ -57,9 +68,9 @@ function ProductsManage() {
 				<AiOutlinePlusSquare />
 			</div>
 			<div
-				className={cx('absolute', 'top-0')}
+				className={cx('absolute', 'top-16')}
 				style={{
-					left: '80px ',
+					left: '40px',
 				}}>
 				{!hideCreateProduct && <CreateProduct />}
 			</div>

@@ -5,7 +5,7 @@ import styles from './Admin.module.scss';
 
 const cx = classNames.bind(styles);
 function Admin() {
-	return <div>this is admin</div>;
+	return <div className={cx('capitalize font-extrabold')}>admin is not admin</div>;
 }
 
 export default memo(Admin);

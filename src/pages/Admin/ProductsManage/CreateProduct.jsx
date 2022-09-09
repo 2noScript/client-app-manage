@@ -46,70 +46,127 @@ function CreateProduct() {
 		}
 	}, [name, id, price, descripttion, discount, status, imageLink]);
 	return (
-		<div className={cx('bg-slate-300')} style={{width: 1000}}>
-			<div>tạo mới</div>
-			<div className={cx('flex flex-col')}>
-				<input
-					type="text"
-					placeholder="name"
-					value={name}
-					onChange={e => {
-						setName(e.target.value);
-					}}
-				/>
-				<input
-					type="text"
-					placeholder="id"
-					value={id}
-					onChange={e => {
-						setId(e.target.value);
-					}}
-				/>
-				<input
-					type="text"
-					placeholder="price"
-					value={price}
-					onChange={e => {
-						setPrice(e.target.value);
-					}}
-				/>
-				<textarea
-					cols="4"
-					rows="4"
-					placeholder="discription"
-					value={descripttion}
-					onChange={e => {
-						setDescripttion(e.target.value);
-					}}
-				/>
-				<input
-					type="text"
-					placeholder="discount"
-					value={discount}
-					onChange={e => {
-						setDiscount(e.target.value);
-					}}
-				/>
-				<input
-					type="text"
-					placeholder="status"
-					value={status}
-					onChange={e => {
-						setStatus(e.target.value);
-					}}
-				/>
-				<textarea
-					name=""
-					id=""
-					cols="4"
-					rows="4"
-					placeholder="image link"
-					value={imageLink}
-					onChange={e => {
-						setImageLink(e.target.value);
-					}}></textarea>
-				<button className={cx('mt-5 bg-red-600')} onClick={createProduct}>
-					ok
+		<div className={cx('bg-slate-300')} style={{width: 800}}>
+			<div
+				className={cx(
+					'flex items-center justify-center py-1 font-medium text-lg bg-red-500'
+				)}>
+				Thêm sản phẩm mới
+			</div>
+			<div className={cx('flex flex-col px-4 py-4')}>
+				<div
+					className={cx('px-2 border-slate-100 rounded bg-slate-50 mt-2')}
+					style={{
+						borderWidth: '1px',
+					}}>
+					<input
+						className={cx('w-full placeholder:capitalize bg-transparent')}
+						type="text"
+						placeholder="name"
+						value={name}
+						onChange={e => {
+							setName(e.target.value);
+						}}
+					/>
+				</div>
+				<div
+					className={cx('px-2 border-slate-100 rounded bg-slate-50 mt-2')}
+					style={{
+						borderWidth: '1px',
+					}}>
+					<input
+						className={cx('w-full placeholder:capitalize bg-transparent')}
+						type="text"
+						placeholder="id"
+						value={id}
+						onChange={e => {
+							setId(e.target.value);
+						}}
+					/>
+				</div>
+				<div
+					className={cx('px-2 border-slate-100 rounded bg-slate-50 mt-2')}
+					style={{
+						borderWidth: '1px',
+					}}>
+					<input
+						className={cx('w-full placeholder:capitalize bg-transparent')}
+						type="text"
+						placeholder="price"
+						value={price}
+						onChange={e => {
+							setPrice(e.target.value);
+						}}
+					/>
+				</div>
+				<div
+					className={cx('px-2 border-slate-100 rounded bg-slate-50 mt-2')}
+					style={{
+						borderWidth: '1px',
+					}}>
+					<textarea
+						className={cx('w-full placeholder:capitalize bg-transparent')}
+						cols="4"
+						rows="2"
+						placeholder="discription"
+						value={descripttion}
+						onChange={e => {
+							setDescripttion(e.target.value);
+						}}
+					/>
+				</div>
+				<div
+					className={cx('px-2 border-slate-100 rounded bg-slate-50 mt-2')}
+					style={{
+						borderWidth: '1px',
+					}}>
+					<input
+						className={cx('w-full placeholder:capitalize bg-transparent')}
+						type="text"
+						placeholder="discount"
+						value={discount}
+						onChange={e => {
+							setDiscount(e.target.value);
+						}}
+					/>
+				</div>
+				<div
+					className={cx('px-2 border-slate-100 rounded bg-slate-50 mt-2')}
+					style={{
+						borderWidth: '1px',
+					}}>
+					<input
+						className={cx('w-full placeholder:capitalize bg-transparent')}
+						type="text"
+						placeholder="status"
+						value={status}
+						onChange={e => {
+							setStatus(e.target.value);
+						}}
+					/>
+				</div>
+				<div
+					className={cx('px-2 border-slate-100 rounded bg-slate-50 mt-2')}
+					style={{
+						borderWidth: '1px',
+					}}>
+					<textarea
+						className={cx(
+							'w-full placeholder:capitalize bg-transparent',
+							'active:border-none'
+						)}
+						name=""
+						id=""
+						cols="4"
+						rows="2"
+						placeholder="image link"
+						value={imageLink}
+						onChange={e => {
+							setImageLink(e.target.value);
+						}}></textarea>
+				</div>
+				<button className={cx('mt-5 bg-red-600 w-32 py-1')} onClick={createProduct}>
+					khởi tạo
 				</button>
 			</div>
 		</div>

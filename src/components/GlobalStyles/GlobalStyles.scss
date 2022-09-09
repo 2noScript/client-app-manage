@@ -70,7 +70,9 @@ ul {
 		}
 	}
 }
-
+textarea {
+	outline: none;
+}
 .scroll-y::-webkit-scrollbar {
 	width: 4px;
 	direction: rtl;

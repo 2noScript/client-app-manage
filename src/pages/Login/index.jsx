@@ -9,8 +9,8 @@ import {useNavigate} from 'react-router-dom';
 import api from '../../api';
 import {GiWoodenClogs} from 'react-icons/gi';
 const cx = classNames.bind(styles);
-const u = null;
-// 'https://toigingiuvedep.vn/wp-content/uploads/2021/07/mau-menu-quan-cafe-cuc-dep.jpg';
+const u =
+	'https://toigingiuvedep.vn/wp-content/uploads/2021/07/mau-menu-quan-cafe-cuc-dep.jpg';
 
 function Login() {
 	const [userName, setUserName] = useState('');
@@ -66,26 +66,30 @@ function Login() {
 			style={{backgroundImage: `url(${u})`}}>
 			<div
 				className={cx(
-					'abs-center  backdrop-brightness-50 bg-white/30 flex items-center justify-center',
+					'abs-center   flex items-center justify-center',
 					'login',
 					'rounded-3xl'
 				)}>
-				<div className={cx('bg-white h-40 w-72')}>
-					<div className={cx('flex items-center')}>
+				<div
+					className={cx(
+						'bg-white/30  py-6 w-72 backdrop-brightness-50',
+						'flex flex-col items-center justify-center rounded-xl'
+					)}>
+					<div className={cx('flex items-center bg-gray-100 rounded-3xl px-2 py-1')}>
 						<div>
 							<FaRegUser />
 						</div>
 						<div>
 							<input
 								type="text"
-								placeholder="tên đăng nhập"
-								className={cx('placeholder:text-center')}
+								placeholder="username"
+								className={cx('placeholder:text-center px-2 bg-transparent')}
 								onChange={handleUserNameInput}
 								value={userName}
 							/>
 						</div>
 					</div>
-					<div className={cx('flex items-center')}>
+					<div className={cx('flex items-center mt-2 rounded-3xl px-2 py-1 bg-gray-100')}>
 						<div>
 							<VscKey />
 						</div>
@@ -93,20 +97,26 @@ function Login() {
 							<input
 								type="password"
 								value={password}
-								placeholder="mật khẩu"
-								className={cx('placeholder:text-center')}
+								placeholder="password"
+								className={cx('placeholder:text-center px-2 bg-transparent')}
 								onChange={handlePasswordInput}
 							/>
 						</div>
 					</div>
-					<div className={cx('')}>
-						<button onClick={handleSubmit}>đăng nhập</button>
+					<div className={cx('mt-4')}>
 						<button
+							onClick={handleSubmit}
+							className={cx(
+								'bg-red-300 h-12 w-12 rounded-full px-1 py-1 hover:bg-slate-300'
+							)}>
+							login
+						</button>
+						{/* <button
 							onClick={() => {
 								localStorage.removeItem('accessToken');
 							}}>
 							đăng xuất
-						</button>
+						</button> */}
 					</div>
 				</div>
 			</div>

@@ -22,7 +22,7 @@ function Product({data}) {
 				offset={[0, -20]}
 				placement={'bottom'}
 				render={attrs => (
-					<div className={cx('bg-red-600 px-20 py-20')} tabIndex="-1" {...attrs}>
+					<div className={cx('')} tabIndex="-1" {...attrs}>
 						{!hide && <EditProduct data={data} />}
 					</div>
 				)}

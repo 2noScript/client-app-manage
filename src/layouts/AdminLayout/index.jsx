@@ -2,6 +2,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import classNames from 'classnames/bind';
 import {useDispatch} from 'react-redux';
 import {resetUser} from '../../store/userReducer';
+import {RiLogoutCircleRLine} from 'react-icons/ri';
 const cx = classNames.bind();
 function AdminLayout({children}) {
 	const navigate = useNavigate();
@@ -30,22 +31,33 @@ function AdminLayout({children}) {
 	];
 	return (
 		<div>
-			<div
-				className={cx('h-20 bg-slate-400')}
-				onClick={() => {
-					dispatch(resetUser());
-					localStorage.removeItem('accessToken');
-					localStorage.removeItem('user');
-					navigate('/', {});
-				}}>
-				thoát
+			<div className={cx('h-16 bg-slate-400 flex items-center')}>
+				<div
+					className={cx(
+						' bg-red-400 flex items-center justify-center ml-20 px-2 py-1 rounded-md',
+						'cursor-pointer hover:text-slate-300 hover:bg-slate-500'
+					)}
+					onClick={() => {
+						dispatch(resetUser());
+						localStorage.removeItem('accessToken');
+						localStorage.removeItem('user');
+						navigate('/', {});
+					}}>
+					<span className={cx('mr-2')}>exit</span>
+					<div className={cx('')}>
+						<RiLogoutCircleRLine />
+					</div>
+				</div>
 			</div>
 			<div className={cx('flex')}>
 				{PATH.map((item, index) => {
 					const {name, link} = item;
 					return (
 						<Link to={link} key={index}>
-							<div className={cx('px-2 py-1 cursor-pointer capitalize')}>{name}</div>
+							<div
+								className={cx('px-2 py-1 cursor-pointer capitalize text-lg font-bold')}>
+								{name}
+							</div>
 						</Link>
 					);
 				})}
