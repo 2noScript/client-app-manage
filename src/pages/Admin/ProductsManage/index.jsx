@@ -9,7 +9,7 @@ const cx = classNames.bind();
 
 function ProductsManage() {
 	const [data, setData] = useState([]);
-	const [hideCreateProduct, setHideCreateProduct] = useState(false);
+	const [hideCreateProduct, setHideCreateProduct] = useState(true);
 	const [searchValue, setSearchValue] = useState('');
 	const [searchDebounce, setSearchDebounce] = useDebounce(searchValue, 500);
 	useEffect(() => {
