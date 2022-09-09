@@ -9,8 +9,7 @@ import {useNavigate} from 'react-router-dom';
 import api from '../../api';
 import {GiWoodenClogs} from 'react-icons/gi';
 const cx = classNames.bind(styles);
-const u =
-	'https://toigingiuvedep.vn/wp-content/uploads/2021/07/mau-menu-quan-cafe-cuc-dep.jpg';
+const u = 'https://wallpaperaccess.com/full/41593.jpg';
 
 function Login() {
 	const [userName, setUserName] = useState('');
