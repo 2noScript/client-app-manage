@@ -1,50 +1,42 @@
-import api from '../../../api';
 import classNames from 'classnames/bind';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, memo} from 'react';
 import {AiOutlinePlusSquare} from 'react-icons/ai';
-import ListProduct from './ListProduct';
+import ListProduct from './ProductList';
 import CreateProduct from './CreateProduct';
 import {useDebounce} from '@react-hook/debounce';
+import {useDispatch} from 'react-redux';
+import {fetchProductsList} from '../../../store/productsReducer';
 const cx = classNames.bind();
 
 function ProductsManage() {
-	const [data, setData] = useState([]);
 	const [hideCreateProduct, setHideCreateProduct] = useState(true);
 	const [searchValue, setSearchValue] = useState('');
 	const [searchDebounce, setSearchDebounce] = useDebounce(searchValue, 500);
+	const dispatch = useDispatch();
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const {data} = await api.get('products/search', {
-					params: {
-						token: localStorage.getItem('accessToken'),
-						keyword: searchDebounce,
-						itemPerPage: 100,
-						page: 1,
-					},
-				});
-				const {productList} = data;
-				setData(productList);
-			} catch {
-				console.log('err');
-			}
-		};
-		fetchData();
+		dispatch(fetchProductsList({keyword: searchDebounce, itemPerPage: 100, page: 1}));
 	}, [searchDebounce]);
 	useEffect(() => {
 		setSearchDebounce(searchValue);
 	}, [searchValue]);
 	return (
-		<div className={cx('relative')}>
+		<div>
 			<div
 				className={cx(
-					'text-red-500 flex items-center justify-center text-3xl',
-					'capitalize font-medium'
+					'fixed top-0 left-0 z-40 items-center justify-center pl-40',
+					'h-16 bg-violet-400 flex items-center w-full '
 				)}>
-				product
-			</div>
-			<div className={cx('flex items-center justify-center h-20')}>
-				<div className={cx('w-1/4 bg-red-100 rounded-md px-3 py-1')}>
+				<div
+					onClick={e => {
+						setHideCreateProduct(!hideCreateProduct);
+					}}
+					className={cx(
+						' px-2 py-2 bg-red-400 flex items-center justify-center cursor-pointer',
+						'rounded-full mr-2 '
+					)}>
+					<AiOutlinePlusSquare />
+				</div>
+				<div className={cx(' bg-red-100 rounded-full px-3 py-1 w-96')}>
 					<input
 						className={cx(
 							'w-full bg-transparent placeholder:text-center placeholder:capitalize'
@@ -58,36 +50,23 @@ function ProductsManage() {
 					/>
 				</div>
 			</div>
-			<div
-				onClick={e => {
-					setHideCreateProduct(!hideCreateProduct);
-				}}
-				className={cx(
-					'h-10 w-10 bg-red-400 flex items-center justify-center cursor-pointer'
-				)}>
-				<AiOutlinePlusSquare />
-			</div>
-			<div
-				className={cx('absolute', 'top-16')}
-				style={{
-					left: '40px',
-				}}>
-				{!hideCreateProduct && <CreateProduct />}
-			</div>
-			<div className={cx('px-40')}>
-				<div className={cx('flex  mb-10 capitalize px-4')}>
-					<div className={cx('w-20 font-bold')}>id</div>
-					<div className={cx('w-20 font-bold')}>status</div>
-					<div className={cx('w-40 font-bold')}>name</div>
-					<div className={cx('w-32 font-bold')}>price-vnđ</div>
-					<div className={cx('w-32 font-bold')}>discount-%</div>
-					<div className={cx('w-64 font-bold')}>description</div>
-					<div className={cx('w-96 font-bold')}>url</div>
+			{!hideCreateProduct && (
+				<div
+					className={cx(
+						'fixed top-0 left-0 right-0 bottom-0 bg-black/20 backdrop-opacity-10 z-50'
+					)}>
+					<CreateProduct
+						onClick={() => {
+							setHideCreateProduct(true);
+						}}
+					/>
 				</div>
-				<ListProduct data={data} />
+			)}
+			<div className={cx('px-40 mt-16')}>
+				<ListProduct />
 			</div>
 		</div>
 	);
 }
 
-export default ProductsManage;
+export default memo(ProductsManage);

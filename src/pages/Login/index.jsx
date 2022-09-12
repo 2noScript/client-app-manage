@@ -7,7 +7,8 @@ import {useDispatch} from 'react-redux';
 import {reset, isClient, isAdmin} from '../../store/userReducer';
 import {useNavigate} from 'react-router-dom';
 import api from '../../api';
-import {GiWoodenClogs} from 'react-icons/gi';
+// import {GiWoodenClogs} from 'react-icons/gi';
+import {BiLogInCircle} from 'react-icons/bi';
 const cx = classNames.bind(styles);
 const u = 'https://wallpaperaccess.com/full/41593.jpg';
 
@@ -42,14 +43,18 @@ function Login() {
 						},
 					}
 				);
-				if (data.role === 'admin') {
+				// console.log(data.token);
+				if (data.role === '[ROLE_ADMIN]') {
 					localStorage.setItem('accessToken', data.token);
 					localStorage.setItem('user', 'admin');
+					alert('Bạn đăng nhập với quyền admin');
 					navigate('/admin');
 					dispatch(isAdmin());
-				} else if (data.role === 'user') {
+				} else if (data.role === '[ROLE_USER]') {
 					localStorage.setItem('accessToken', data.token);
 					localStorage.setItem('user', 'client');
+					alert('Bạn đăng nhập với quyền khách hàng');
+
 					navigate('/menu');
 					dispatch(isClient());
 				}
@@ -106,16 +111,14 @@ function Login() {
 						<button
 							onClick={handleSubmit}
 							className={cx(
-								'bg-red-300 h-12 w-12 rounded-full px-1 py-1 hover:bg-slate-300'
+								'bg-red-300 px-3 rounded  py-1 hover:bg-slate-300',
+								'flex items-center'
 							)}>
-							login
+							<span className={cx('capitalize')}>login</span>
+							<span>
+								<BiLogInCircle />
+							</span>
 						</button>
-						{/* <button
-							onClick={() => {
-								localStorage.removeItem('accessToken');
-							}}>
-							đăng xuất
-						</button> */}
 					</div>
 				</div>
 			</div>
