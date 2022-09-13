@@ -7,6 +7,7 @@ export const fetchProductsList = createAsyncThunk(
 		try {
 			const {data} = await api.get(`products/search`, {
 				params: {
+					itemPerPage: 100,
 					...params,
 				},
 				headers: {

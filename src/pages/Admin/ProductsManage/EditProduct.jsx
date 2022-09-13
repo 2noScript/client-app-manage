@@ -1,6 +1,8 @@
 import {memo, useState, useCallback} from 'react';
 import classNames from 'classnames/bind';
 import {MdClose} from 'react-icons/md';
+import {useDispatch} from 'react-redux';
+import {fetchProductsList} from '../../../store/productsReducer';
 import api from '../../../api';
 const cx = classNames.bind();
 function EditProduct({data, onClose}) {
@@ -11,12 +13,17 @@ function EditProduct({data, onClose}) {
 	const [discount, setDiscount] = useState(data.discount);
 	const [status, setStatus] = useState(data.itemstatus);
 	const [imageLink, setImageLink] = useState(data.imagelink);
+
+	const dispatch = useDispatch();
 	const handleDelete = useCallback(() => {
 		const deleteProduct = async () => {
 			try {
 				await api.delete(`products/${id}/`, {
 					params: {
 						token: localStorage.getItem('accessToken'),
+					},
+					headers: {
+						Authorization: localStorage.getItem('accessToken'),
 					},
 				});
 				alert('xóa thành công');
@@ -44,12 +51,12 @@ function EditProduct({data, onClose}) {
 				await api.put(
 					'products',
 					{
-						token: localStorage.getItem('accessToken'),
 						...data,
 					},
 					{
 						headers: {
 							'Content-Type': 'multipart/form-data',
+							Authorization: localStorage.getItem('accessToken'),
 						},
 					}
 				);
@@ -59,7 +66,16 @@ function EditProduct({data, onClose}) {
 				alert('chỉnh sửa ko thành công');
 			}
 		};
-		if (name && id && price && description && discount && status && imageLink)
+		console.log(typeof status);
+		if (
+			name &&
+			id &&
+			price &&
+			description &&
+			discount &&
+			status.toString().length > 0 &&
+			imageLink
+		)
 			updateProduct();
 		else {
 			alert('thông tin không được bỏ trống');

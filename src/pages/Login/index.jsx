@@ -43,7 +43,8 @@ function Login() {
 						},
 					}
 				);
-				// console.log(data.token);
+				console.log(data);
+
 				if (data.role === '[ROLE_ADMIN]') {
 					localStorage.setItem('accessToken', data.token);
 					localStorage.setItem('user', 'admin');

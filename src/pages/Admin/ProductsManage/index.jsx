@@ -4,18 +4,12 @@ import {AiOutlinePlusSquare} from 'react-icons/ai';
 import ListProduct from './ProductList';
 import CreateProduct from './CreateProduct';
 import {useDebounce} from '@react-hook/debounce';
-import {useDispatch} from 'react-redux';
-import {fetchProductsList} from '../../../store/productsReducer';
 const cx = classNames.bind();
 
 function ProductsManage() {
 	const [hideCreateProduct, setHideCreateProduct] = useState(true);
 	const [searchValue, setSearchValue] = useState('');
 	const [searchDebounce, setSearchDebounce] = useDebounce(searchValue, 500);
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(fetchProductsList({keyword: searchDebounce, itemPerPage: 100, page: 1}));
-	}, [searchDebounce]);
 	useEffect(() => {
 		setSearchDebounce(searchValue);
 	}, [searchValue]);
@@ -63,7 +57,7 @@ function ProductsManage() {
 				</div>
 			)}
 			<div className={cx('px-40 mt-16')}>
-				<ListProduct />
+				<ListProduct searchKey={searchDebounce} />
 			</div>
 		</div>
 	);
