@@ -5,9 +5,9 @@ export const fetchProductsList = createAsyncThunk(
 	'fetchProductsList',
 	async (params, thunkAPI) => {
 		try {
-			const {data} = await api.get(`products/search`, {
+			const {data} = await api.get(`products`, {
 				params: {
-					itemPerPage: 100,
+					itemPerPage: 10,
 					...params,
 				},
 				headers: {

@@ -1,5 +1,13 @@
+import {AdminTableCreate, AdminTableList} from './components';
+
 function TableManage() {
-	return <div>table</div>;
+	return (
+		<div>
+			<div>
+				<AdminTableList />
+			</div>
+		</div>
+	);
 }
 
 export default TableManage;

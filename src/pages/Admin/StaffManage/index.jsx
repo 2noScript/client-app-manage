@@ -1,5 +1,13 @@
+import {AdminStaffList} from './components';
+
 function StaffManage() {
-	return <div>Staff</div>;
+	return (
+		<div>
+			<div>
+				<AdminStaffList />
+			</div>
+		</div>
+	);
 }
 
 export default StaffManage;

@@ -1,5 +1,11 @@
+import {AdminBillList} from './components';
+
 function Billmanage() {
-	return <div>bill</div>;
+	return (
+		<div>
+			<AdminBillList />
+		</div>
+	);
 }
 
 export default Billmanage;

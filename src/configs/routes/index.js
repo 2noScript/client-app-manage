@@ -1,6 +1,6 @@
 // empty layout
 import {Fragment} from 'react';
-import DefaultLayout from '../../layouts/DefaultLayout';
+import MenuLayout from '../../layouts/MenuLayout';
 import Adminlayout from '../../layouts/AdminLayout';
 // pages
 import Home from '../../pages/Home';
@@ -26,17 +26,17 @@ const clientRoutes = [
 	{
 		path: '/home',
 		page: Home,
-		layout: DefaultLayout,
+		layout: MenuLayout,
 	},
 	{
 		path: '/menu',
 		page: Menu,
-		layout: DefaultLayout,
+		layout: MenuLayout,
 	},
 	{
 		path: '/heart',
 		page: Fragment,
-		layout: DefaultLayout,
+		layout: MenuLayout,
 	},
 ];
 const adminRoutes = [
