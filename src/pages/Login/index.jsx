@@ -54,6 +54,7 @@ function Login() {
 				} else if (data.role === '[ROLE_USER]') {
 					localStorage.setItem('accessToken', data.token);
 					localStorage.setItem('user', 'client');
+					localStorage.setItem('tableId', data.dinnerTable.dinnertableid);
 					alert('Bạn đăng nhập với quyền khách hàng');
 
 					navigate('/menu');
